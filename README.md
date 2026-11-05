@@ -51,7 +51,7 @@ Host: edge-wsl | Kernel: 6.18.54.1-microsoft-standard-WSL2 | Score: 100/100
 ✅ [PASS] DNS Resolution Latency (github.com) (Network)
     Current: 8.12 ms | Target: < 50 ms (Cloudflare 1.1.1.1 / Google 8.8.8.8)
 ✅ [PASS] Windows Host .wslconfig Profile (Configuration)
-    Current: /mnt/c/Users/cabelim/.wslconfig | Target: Present with pageReporting, autoMemoryReclaim=gradual
+    Current: /mnt/c/Users/cabelim/.wslconfig | Target: Present with autoMemoryReclaim=gradual, sparseVhd=true, dnsTunneling=true
 ----------------------------------------------------------------------------
 ```
 

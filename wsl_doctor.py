@@ -97,7 +97,6 @@ def calculate_optimal_wslconfig(host_ram_gb: float, host_cpus: int) -> dict[str,
         "memory_mb": mem_mb,
         "processors": cpus,
         "swap_gb": swap_gb,
-        "pageReporting": True,
         "autoMemoryReclaim": "gradual",
         "sparseVhd": True,
         "dnsTunneling": True,
@@ -112,7 +111,6 @@ def render_wslconfig(cfg: dict[str, Any]) -> str:
         f"memory={cfg['memory_mb']}MB\n"
         f"processors={cfg['processors']}\n"
         f"swap={cfg['swap_gb']}GB\n"
-        f"pageReporting={'true' if cfg.get('pageReporting', True) else 'false'}\n"
         "guiApplications=true\n"
         "nestedVirtualization=true\n\n"
         "[experimental]\n"
@@ -239,7 +237,7 @@ def run_audit(skip_network: bool = False) -> AuditReport:
             title="Windows Host .wslconfig Profile",
             status="PASS" if has_wslconfig else "WARN",
             current_value=str(wslconfig_candidates[0]) if has_wslconfig else "missing",
-            recommended_value="Present with pageReporting, autoMemoryReclaim=gradual, sparseVhd=true",
+            recommended_value="Present with autoMemoryReclaim=gradual, sparseVhd=true, dnsTunneling=true",
             impact="Without .wslconfig, WSL2 uses unoptimized defaults and does not reclaim idle cached RAM.",
             remediation="Run `wsl-doctor generate-wslconfig` to write an optimized profile.",
         )

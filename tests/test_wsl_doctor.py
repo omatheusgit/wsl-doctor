@@ -1,4 +1,9 @@
 import json
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 from wsl_doctor import (
     CheckResult,
     calculate_optimal_wslconfig,
@@ -36,6 +41,7 @@ def test_render_wslconfig_contains_required_keys():
     assert "autoMemoryReclaim=gradual" in text
     assert "dnsTunneling=true" in text
     assert "sparseVhd=true" in text
+    assert "pageReporting" not in text
 
 
 def test_compute_health_score():
